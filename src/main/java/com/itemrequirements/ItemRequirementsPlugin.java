@@ -1,5 +1,7 @@
 package com.itemrequirements;
 
+import com.google.gson.Gson;
+
 import com.google.inject.Provides;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.events.ClientTick;
@@ -29,6 +31,9 @@ public class ItemRequirementsPlugin extends Plugin
 	@Inject
 	private ItemRequirementsTooltipOverlay tooltipOverlay;
 
+	@Inject
+	private Gson gson;
+
 	private boolean tooltipSetThisFrame = false;
 
 	private WidgetItem lastHoveredItem = null;
@@ -37,7 +42,7 @@ public class ItemRequirementsPlugin extends Plugin
 	protected void startUp() throws Exception
 	{
 		log.info("Item Requirements started!");
-		ItemRequirementsData.loadFromJson();
+		ItemRequirementsData.loadFromJson(gson);
 		overlayManager.add(overlay);
 		overlayManager.add(tooltipOverlay);
 	}
@@ -53,7 +58,7 @@ public class ItemRequirementsPlugin extends Plugin
 
 	public void reloadRequirements()
 	{
-		ItemRequirementsData.loadFromJson();
+		ItemRequirementsData.reloadRequirements(gson);
 		log.info("Item requirements reloaded.");
 	}
 
