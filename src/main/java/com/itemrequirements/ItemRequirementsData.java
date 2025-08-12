@@ -1,4 +1,4 @@
-package com.equipmentrequirements;
+package com.itemrequirements;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -15,9 +15,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class EquipmentRequirementsData
+public class ItemRequirementsData
 {
-    private static final Logger log = LoggerFactory.getLogger(EquipmentRequirementsData.class);
+    private static final Logger log = LoggerFactory.getLogger(ItemRequirementsData.class);
     public static final Map<String, List<Requirement>> ITEM_REQUIREMENTS = new HashMap<>();
     public static final Map<Integer, List<Requirement>> ITEM_REQUIREMENTS_BY_ID = new HashMap<>();
 
@@ -32,17 +32,23 @@ public class EquipmentRequirementsData
     }
 
     public static void loadFromJson() {
-        log.info("Loading equipment requirements from Items-Information.json");
+        log.info("Loading item requirements from Items-Information.json");
         ITEM_REQUIREMENTS.clear();
         ITEM_REQUIREMENTS_BY_ID.clear();
         Gson gson = new Gson();
 
-        InputStream infoStream = EquipmentRequirementsData.class.getResourceAsStream("/Items-Information.json");
+        InputStream infoStream = ItemRequirementsData.class.getResourceAsStream("/Items-Information.json");
         if (infoStream == null) {
             infoStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("Items-Information.json");
         }
         if (infoStream == null) {
-            infoStream = EquipmentRequirementsData.class.getResourceAsStream("/com/equipmentrequirements/Items-Information.json");
+            infoStream = ItemRequirementsData.class.getResourceAsStream("/com/itemrequirements/Items-Information.json");
+        }
+        if (infoStream == null) {
+            infoStream = ItemRequirementsData.class.getResourceAsStream("/com/equipmentrequirements/Items-Information.json");
+            if (infoStream != null) {
+                log.warn("Loaded Items-Information.json from legacy path /com/equipmentrequirements/. Please move it to /com/itemrequirements/.");
+            }
         }
         if (infoStream == null) {
             throw new RuntimeException("Resource Items-Information.json not found in classpath");
@@ -117,25 +123,25 @@ public class EquipmentRequirementsData
                 log.info("Loaded requirements for item {} (ID {}): {}", name, id, reqList);
             }
         } catch (Exception e) {
-            throw new RuntimeException("Failed to load equipment requirements: " + e.getMessage(), e);
+            throw new RuntimeException("Failed to load item requirements: " + e.getMessage(), e);
         }
     }
     /**
-     * Returns the loaded equipment requirements mapped by item name.
+     * Returns the loaded item requirements mapped by item name.
      */
     public static Map<String, List<Requirement>> getRequirements() {
         return ITEM_REQUIREMENTS;
     }
 
     /**
-     * Returns the loaded equipment requirements mapped by item ID.
+     * Returns the loaded item requirements mapped by item ID.
      */
     public static Map<Integer, List<Requirement>> getRequirementsById() {
         return ITEM_REQUIREMENTS_BY_ID;
     }
 
     /**
-     * Reloads the equipment requirements from the Items-Information.json file.
+     * Reloads the item requirements from the Items-Information.json file.
      */
     public static void reloadRequirements()
     {

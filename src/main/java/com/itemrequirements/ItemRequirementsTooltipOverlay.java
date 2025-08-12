@@ -1,10 +1,11 @@
-package com.equipmentrequirements;
+package com.itemrequirements;
 
 import net.runelite.api.Client;
 import net.runelite.api.widgets.WidgetItem;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
+import net.runelite.client.ui.FontManager;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -12,17 +13,17 @@ import java.awt.*;
 import java.util.List;
 
 @Singleton
-public class EquipmentRequirementsTooltipOverlay extends Overlay
+public class ItemRequirementsTooltipOverlay extends Overlay
 {
 	private final Client client;
-	private final EquipmentRequirementsPlugin plugin;
+	private final ItemRequirementsPlugin plugin;
 
 	private WidgetItem hoveredItem;
 	private List<String> hoveredTooltipLines;
 	private List<Boolean> hoveredTooltipMetStatus;
 
 	@Inject
-	public EquipmentRequirementsTooltipOverlay(Client client, EquipmentRequirementsPlugin plugin)
+	public ItemRequirementsTooltipOverlay(Client client, ItemRequirementsPlugin plugin)
 	{
 		this.client = client;
 		this.plugin = plugin;
@@ -70,25 +71,30 @@ public class EquipmentRequirementsTooltipOverlay extends Overlay
 
 		List<String> lines = this.hoveredTooltipLines;
 		List<Boolean> metStatus = this.hoveredTooltipMetStatus;
-		if (lines == null || lines.isEmpty())
+		if (lines == null || lines.isEmpty() || metStatus == null || metStatus.isEmpty())
+		{
+			return null;
+		}
+		int count = Math.min(lines.size(), metStatus.size());
+		if (count == 0)
 		{
 			return null;
 		}
 
-		graphics.setFont(new Font("RuneScape UF", Font.PLAIN, 10));
+		graphics.setFont(FontManager.getRunescapeSmallFont());
 		FontMetrics fm = graphics.getFontMetrics();
 		int lineHeight = fm.getHeight();
 
 		int maxWidth = 0;
-		for (String line : lines)
+		for (int i = 0; i < count; i++)
 		{
-			maxWidth = Math.max(maxWidth, fm.stringWidth(line));
+			maxWidth = Math.max(maxWidth, fm.stringWidth(lines.get(i)));
 		}
 
 		int paddingX = 8;
 		int paddingY = 6;
 		int boxWidth = maxWidth + 2 * paddingX;
-		int boxHeight = lineHeight * lines.size() + 2 * paddingY;
+		int boxHeight = lineHeight * count + 2 * paddingY;
 
 		Point mouse = new Point(client.getMouseCanvasPosition().getX(), client.getMouseCanvasPosition().getY());
 		int tooltipX = mouse.x - (boxWidth / 2);
@@ -99,6 +105,8 @@ public class EquipmentRequirementsTooltipOverlay extends Overlay
 		int canvasHeight = client.getCanvasHeight();
 		if (tooltipX + boxWidth > canvasWidth) tooltipX = canvasWidth - boxWidth - 2;
 		if (tooltipY + boxHeight > canvasHeight) tooltipY = canvasHeight - boxHeight - 2;
+		if (tooltipX < 2) tooltipX = 2;
+		if (tooltipY < 2) tooltipY = 2;
 
 		graphics.setColor(new Color(60, 52, 41));
 		graphics.fillRect(tooltipX, tooltipY, boxWidth, boxHeight);
@@ -107,7 +115,7 @@ public class EquipmentRequirementsTooltipOverlay extends Overlay
 		graphics.drawRect(tooltipX, tooltipY, boxWidth, boxHeight);
 
 		int yOffset = tooltipY + paddingY + fm.getAscent();
-		for (int i = 0; i < lines.size(); i++)
+		for (int i = 0; i < count; i++)
 		{
 			String line = lines.get(i);
 			boolean met = metStatus.get(i);

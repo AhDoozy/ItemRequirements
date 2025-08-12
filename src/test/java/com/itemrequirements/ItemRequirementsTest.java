@@ -1,13 +1,13 @@
-package com.equipmentrequirements;
+package com.itemrequirements;
 
 import net.runelite.client.RuneLite;
 import net.runelite.client.externalplugins.ExternalPluginManager;
 
-public class EquipmentRequirementsTest
+public class ItemRequirementsTest
 {
 	public static void main(String[] args) throws Exception
 	{
-		ExternalPluginManager.loadBuiltin(EquipmentRequirementsPlugin.class);
+		ExternalPluginManager.loadBuiltin(ItemRequirementsPlugin.class);
 		RuneLite.main(args);
 	}
 }
