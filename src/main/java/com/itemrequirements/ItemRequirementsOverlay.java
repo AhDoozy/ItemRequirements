@@ -1,4 +1,4 @@
-package com.equipmentrequirements;
+package com.itemrequirements;
 
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
@@ -20,22 +20,22 @@ import java.util.List;
 
 @Singleton
 @Slf4j
-public class EquipmentRequirementsOverlay extends WidgetItemOverlay
+public class ItemRequirementsOverlay extends WidgetItemOverlay
 {
 	private final Client client;
-	private final EquipmentRequirementsConfig config;
+	private final ItemRequirementsConfig config;
 	private final ItemManager itemManager;
-	private final EquipmentRequirementsPlugin plugin;
+	private final ItemRequirementsPlugin plugin;
 	private static final Font INFO_FONT = FontManager.getRunescapeSmallFont();
 	private static final Color ICON_RED = new Color(255, 23, 23);
 	private static final Color OUTLINE_BLACK = Color.BLACK;
 
 	@Inject
-	public EquipmentRequirementsOverlay(
+	public ItemRequirementsOverlay(
 		Client client,
-		EquipmentRequirementsConfig config,
+		ItemRequirementsConfig config,
 		ItemManager itemManager,
-		EquipmentRequirementsPlugin plugin
+		ItemRequirementsPlugin plugin
 	)
 	{
 		this.client = client;
@@ -100,10 +100,10 @@ public class EquipmentRequirementsOverlay extends WidgetItemOverlay
 		int lookupId = itemManager.canonicalize(itemId);
 		String itemName = Text.removeTags(itemManager.getItemComposition(lookupId).getName());
 
-		List<Requirement> requirements = EquipmentRequirementsData.ITEM_REQUIREMENTS_BY_ID.get(lookupId);
+		List<Requirement> requirements = ItemRequirementsData.ITEM_REQUIREMENTS_BY_ID.get(lookupId);
 		if (requirements == null || requirements.isEmpty())
 		{
-			requirements = EquipmentRequirementsData.ITEM_REQUIREMENTS.get(itemName);
+			requirements = ItemRequirementsData.ITEM_REQUIREMENTS.get(itemName);
 			if (requirements == null || requirements.isEmpty())
 			{
 				return;

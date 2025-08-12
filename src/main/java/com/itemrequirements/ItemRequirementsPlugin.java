@@ -1,4 +1,4 @@
-package com.equipmentrequirements;
+package com.itemrequirements;
 
 import com.google.inject.Provides;
 import lombok.extern.slf4j.Slf4j;
@@ -15,19 +15,19 @@ import javax.inject.Inject;
 
 @Slf4j
 @PluginDescriptor(
-	name = "Equipment Requirements",
+	name = "Item Requirements",
 	description = "Shows skill and quest requirements for items in overlays and tooltips."
 )
-public class EquipmentRequirementsPlugin extends Plugin
+public class ItemRequirementsPlugin extends Plugin
 {
 	@Inject
 	private OverlayManager overlayManager;
 
 	@Inject
-	private EquipmentRequirementsOverlay overlay;
+	private ItemRequirementsOverlay overlay;
 
 	@Inject
-	private EquipmentRequirementsTooltipOverlay tooltipOverlay;
+	private ItemRequirementsTooltipOverlay tooltipOverlay;
 
 	private boolean tooltipSetThisFrame = false;
 
@@ -36,8 +36,8 @@ public class EquipmentRequirementsPlugin extends Plugin
 	@Override
 	protected void startUp() throws Exception
 	{
-		log.info("Equipment Requirements started!");
-		EquipmentRequirementsData.loadFromJson();
+		log.info("Item Requirements started!");
+		ItemRequirementsData.loadFromJson();
 		overlayManager.add(overlay);
 		overlayManager.add(tooltipOverlay);
 	}
@@ -45,7 +45,7 @@ public class EquipmentRequirementsPlugin extends Plugin
 	@Override
 	protected void shutDown() throws Exception
 	{
-		log.info("Equipment Requirements stopped!");
+		log.info("Item Requirements stopped!");
 		overlayManager.remove(overlay);
 		overlayManager.remove(tooltipOverlay);
 	}
@@ -53,8 +53,8 @@ public class EquipmentRequirementsPlugin extends Plugin
 
 	public void reloadRequirements()
 	{
-		EquipmentRequirementsData.loadFromJson();
-		log.info("Equipment requirements reloaded.");
+		ItemRequirementsData.loadFromJson();
+		log.info("Item requirements reloaded.");
 	}
 
 	@Subscribe
@@ -68,11 +68,11 @@ public class EquipmentRequirementsPlugin extends Plugin
 	}
 
 	@Provides
-	EquipmentRequirementsConfig provideConfig(ConfigManager configManager)
+    ItemRequirementsConfig provideConfig(ConfigManager configManager)
 	{
-		return configManager.getConfig(EquipmentRequirementsConfig.class);
+		return configManager.getConfig(ItemRequirementsConfig.class);
 	}
-    public EquipmentRequirementsTooltipOverlay getTooltipOverlay()
+    public ItemRequirementsTooltipOverlay getTooltipOverlay()
     {
         return tooltipOverlay;
     }

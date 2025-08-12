@@ -1,4 +1,4 @@
-package com.equipmentrequirements;
+package com.itemrequirements;
 
 import net.runelite.api.Client;
 import net.runelite.api.Skill;
