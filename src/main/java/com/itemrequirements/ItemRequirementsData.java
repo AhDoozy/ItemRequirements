@@ -27,15 +27,11 @@ public class ItemRequirementsData
         int level;
     }
 
-    static {
-        loadFromJson();
-    }
 
-    public static void loadFromJson() {
+    public static void loadFromJson(Gson gson) {
         log.info("Loading item requirements from Items-Information.json");
         ITEM_REQUIREMENTS.clear();
         ITEM_REQUIREMENTS_BY_ID.clear();
-        Gson gson = new Gson();
 
         InputStream infoStream = ItemRequirementsData.class.getResourceAsStream("/Items-Information.json");
         if (infoStream == null) {
@@ -143,9 +139,9 @@ public class ItemRequirementsData
     /**
      * Reloads the item requirements from the Items-Information.json file.
      */
-    public static void reloadRequirements()
+    public static void reloadRequirements(Gson gson)
     {
-        loadFromJson();
+        loadFromJson(gson);
     }
 
 }
