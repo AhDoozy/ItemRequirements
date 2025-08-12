@@ -27,7 +27,7 @@ public class EquipmentRequirementsOverlay extends WidgetItemOverlay
 	private final ItemManager itemManager;
 	private final EquipmentRequirementsPlugin plugin;
 	private static final Font INFO_FONT = FontManager.getRunescapeSmallFont();
-	private static final Color ICON_RED = new Color(255, 65, 65);
+	private static final Color ICON_RED = new Color(255, 23, 23);
 	private static final Color OUTLINE_BLACK = Color.BLACK;
 
 	@Inject
@@ -132,12 +132,14 @@ public class EquipmentRequirementsOverlay extends WidgetItemOverlay
 			return;
 		}
 
-		graphics.setFont(INFO_FONT.deriveFont(INFO_FONT.getSize() * 1.25f));
+		Font scaledInfo = INFO_FONT.deriveFont(java.awt.geom.AffineTransform.getScaleInstance(2.25, 2.25));
+		graphics.setFont(scaledInfo);
 		graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-		FontMetrics fm = graphics.getFontMetrics();
+		graphics.setRenderingHint(RenderingHints.KEY_FRACTIONALMETRICS, RenderingHints.VALUE_FRACTIONALMETRICS_ON);
+		FontMetrics fm = graphics.getFontMetrics(scaledInfo);
 		int textWidth = fm.stringWidth("i");
-		int x = bounds.x + bounds.width - textWidth - 2;
-		int y = bounds.y + bounds.height - 2;
+		int x = bounds.x + bounds.width - textWidth - 4;
+		int y = bounds.y + bounds.height - 4;
 
 		// Draw outline
 		graphics.setColor(OUTLINE_BLACK);
