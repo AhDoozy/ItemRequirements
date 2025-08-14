@@ -23,7 +23,6 @@ import java.util.List;
 public class ItemRequirementsOverlay extends WidgetItemOverlay
 {
 	private final Client client;
-	private final ItemRequirementsConfig config;
 	private final ItemManager itemManager;
 	private final ItemRequirementsPlugin plugin;
 	private static final Font INFO_FONT = FontManager.getRunescapeSmallFont();
@@ -33,13 +32,11 @@ public class ItemRequirementsOverlay extends WidgetItemOverlay
 	@Inject
 	public ItemRequirementsOverlay(
 		Client client,
-		ItemRequirementsConfig config,
 		ItemManager itemManager,
 		ItemRequirementsPlugin plugin
 	)
 	{
 		this.client = client;
-		this.config = config;
 		this.itemManager = itemManager;
 		this.plugin = plugin;
 		showOnInventory();
