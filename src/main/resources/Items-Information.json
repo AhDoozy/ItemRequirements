@@ -12910,10 +12910,7 @@
     "id": 20785,
     "name": "Dragon warhammer",
     "requirements": {
-      "attack": 60,
-      "quests": [
-        "Shayzien favor (100%)"
-      ]
+      "strength": 60
     }
   },
   "20849": {
@@ -15616,10 +15613,7 @@
     "id": 24175,
     "name": "Fighter torso (l)",
     "requirements": {
-      "defence": 40,
-      "quests": [
-        "Barbarian Assault"
-      ]
+      "defence": 40
     }
   },
   "24176": {
@@ -16447,19 +16441,13 @@
   "26709": {
     "id": 26709,
     "name": "Dragon warhammer ornament kit",
-    "requirements": {
-      "quests": [
-        "Shayzien favor (100%)"
-      ]
-    }
+    "requirements": {}
   },
   "26710": {
     "id": 26710,
     "name": "Dragon warhammer (or)",
     "requirements": {
-      "quests": [
-        "Shayzien favor (100%)"
-      ]
+      "strength": 60
     }
   },
   "27008": {
@@ -16565,9 +16553,7 @@
     "id": 28035,
     "name": "Dragon warhammer (cr)",
     "requirements": {
-      "quests": [
-        "Shayzien favor (100%)"
-      ]
+      "strength": 60
     }
   },
   "28055": {
@@ -16583,18 +16569,14 @@
     "id": 28067,
     "name": "Fighter torso (or)",
     "requirements": {
-      "quests": [
-        "Barbarian Assault"
-      ]
+      "defence": 40
     }
   },
   "28069": {
     "id": 28069,
     "name": "Fighter torso (l)(or)",
     "requirements": {
-      "quests": [
-        "Barbarian Assault"
-      ]
+      "defence": 40
     }
   },
   "28070": {
