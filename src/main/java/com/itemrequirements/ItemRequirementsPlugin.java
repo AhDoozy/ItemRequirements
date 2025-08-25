@@ -45,12 +45,13 @@ public class ItemRequirementsPlugin extends Plugin
 	}
 
 	@Override
-	protected void shutDown() throws Exception
-	{
-		log.info("Item Requirements stopped!");
-		overlayManager.remove(overlay);
-		overlayManager.remove(tooltipOverlay);
-	}
+        protected void shutDown() throws Exception
+        {
+                log.info("Item Requirements stopped!");
+                overlayManager.remove(overlay);
+                overlayManager.remove(tooltipOverlay);
+                ItemRequirementsData.clear();
+        }
 
 	public void reloadRequirements()
 	{

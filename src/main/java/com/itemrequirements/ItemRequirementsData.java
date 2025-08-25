@@ -64,8 +64,8 @@ public class ItemRequirementsData
                                 }
                                 catch (IllegalArgumentException ignored)
                                 {
-                                    // Unknown quest string; ignore it, but leave a debug trace for devs
-                                    log.debug("Ignoring unknown quest requirement string: {}", text);
+                                    // Unknown quest string; warn during development so it can be fixed
+                                    log.warn("Ignoring unknown quest requirement string: {}", text);
                                 }
                             }
                             continue;
@@ -107,6 +107,15 @@ public class ItemRequirementsData
     public static void reloadRequirements(Gson gson)
     {
         loadFromJson(gson);
+    }
+
+    /**
+     * Clears all loaded item requirements.
+     */
+    public static void clear()
+    {
+        ITEM_REQUIREMENTS.clear();
+        ITEM_REQUIREMENTS_BY_ID.clear();
     }
 
 }
