@@ -17,16 +17,18 @@ public class ItemRequirementsTooltipOverlay extends Overlay
 {
 	private final Client client;
 	private final ItemRequirementsPlugin plugin;
+	private final ItemRequirementsConfig config;
 
 	private WidgetItem hoveredItem;
 	private List<String> hoveredTooltipLines;
 	private List<Boolean> hoveredTooltipMetStatus;
 
 	@Inject
-	public ItemRequirementsTooltipOverlay(Client client, ItemRequirementsPlugin plugin)
+	public ItemRequirementsTooltipOverlay(Client client, ItemRequirementsPlugin plugin, ItemRequirementsConfig config)
 	{
 		this.client = client;
 		this.plugin = plugin;
+		this.config = config;
 		setLayer(OverlayLayer.ALWAYS_ON_TOP);
 		setPosition(OverlayPosition.DYNAMIC);
 	}
@@ -81,7 +83,9 @@ public class ItemRequirementsTooltipOverlay extends Overlay
 			return null;
 		}
 
-		graphics.setFont(FontManager.getRunescapeSmallFont());
+		Font base = FontManager.getRunescapeSmallFont();
+		Font sized = base.deriveFont((float) config.tooltipTextSize());
+		graphics.setFont(sized);
 		FontMetrics fm = graphics.getFontMetrics();
 		int lineHeight = fm.getHeight();
 
@@ -108,7 +112,9 @@ public class ItemRequirementsTooltipOverlay extends Overlay
 		if (tooltipX < 2) tooltipX = 2;
 		if (tooltipY < 2) tooltipY = 2;
 
-		graphics.setColor(new Color(60, 52, 41));
+		int pct = Math.max(0, Math.min(100, config.tooltipOpacityPercent()));
+		int alpha = (int) Math.round(255 * (pct / 100.0));
+		graphics.setColor(new Color(60, 52, 41, alpha));
 		graphics.fillRect(tooltipX, tooltipY, boxWidth, boxHeight);
 
 		graphics.setColor(new Color(90, 82, 71));
@@ -139,7 +145,37 @@ public class ItemRequirementsTooltipOverlay extends Overlay
 
 	public void renderItemOverlay(WidgetItem item, Point mouse, List<String> lines, List<Boolean> metStatus)
 	{
-		if (item.getCanvasBounds().contains(mouse))
+		Rectangle bounds = item.getCanvasBounds();
+
+		int s = Math.max(6, Math.min(bounds.width, bounds.height) / 3);
+		int left = bounds.x + 1;
+		int right = bounds.x + bounds.width - 1;
+		int top = bounds.y + 1;
+		int bottom = bounds.y + bounds.height - 1;
+		int[] xs;
+		int[] ys;
+		switch (config.triangleCorner())
+		{
+			case TOP_LEFT:
+				xs = new int[] { left, left + s, left };
+				ys = new int[] { top,  top,      top + s };
+				break;
+			case BOTTOM_LEFT:
+				xs = new int[] { left, left + s, left };
+				ys = new int[] { bottom, bottom, bottom - s };
+				break;
+			case BOTTOM_RIGHT:
+				xs = new int[] { right, right - s, right };
+				ys = new int[] { bottom, bottom,   bottom - s };
+				break;
+			case TOP_RIGHT:
+			default:
+				xs = new int[] { right, right - s, right };
+				ys = new int[] { top,   top,       top + s };
+		}
+		Polygon triangle = new Polygon(xs, ys, 3);
+
+		if (triangle.contains(mouse))
 		{
 			this.setHoveredTooltip(item, lines, metStatus);
 			plugin.markTooltipSetThisFrame();

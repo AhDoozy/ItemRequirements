@@ -1,10 +1,12 @@
 package com.itemrequirements;
 
 import com.google.gson.Gson;
+import com.google.inject.Provides;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.events.ClientTick;
 import net.runelite.api.events.CommandExecuted;
 import net.runelite.api.widgets.WidgetItem;
+import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
@@ -106,5 +108,11 @@ public class ItemRequirementsPlugin extends Plugin
 			tooltipOverlay.clearHoveredTooltip();
 		}
 		resetTooltipFlag();
+	}
+
+	@Provides
+	ItemRequirementsConfig provideConfig(ConfigManager configManager)
+	{
+		return configManager.getConfig(ItemRequirementsConfig.class);
 	}
 }
