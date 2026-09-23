@@ -1737,15 +1737,6 @@
       "construction": 15
     }
   },
-  "1540": {
-    "id": 1540,
-    "name": "Anti-dragon shield",
-    "requirements": {
-      "quests": [
-        "Dragon Slayer I"
-      ]
-    }
-  },
   "1617": {
     "id": 1617,
     "name": "Uncut diamond",
@@ -2666,15 +2657,6 @@
       ]
     }
   },
-  "3801": {
-    "id": 3801,
-    "name": "Fremennik kilt",
-    "requirements": {
-      "quests": [
-        "The Fremennik Trials"
-      ]
-    }
-  },
   "3795": {
     "id": 3795,
     "name": "Fremennik hat",
@@ -3046,22 +3028,16 @@
     "id": 4158,
     "name": "Leaf-bladed spear",
     "requirements": {
-      "slayer": 50,
-      "attack": 50,
-      "quests": [
-        "Smoking Kills"
-      ]
+      "slayer": 55,
+      "attack": 50
     }
   },
   "4159": {
     "id": 4159,
     "name": "Leaf-bladed spear",
     "requirements": {
-      "slayer": 50,
-      "attack": 50,
-      "quests": [
-        "Smoking Kills"
-      ]
+      "slayer": 55,
+      "attack": 50
     }
   },
   "4160": {
@@ -6688,15 +6664,6 @@
       ]
     }
   },
-  "8282": {
-    "id": 8282,
-    "name": "Anti-dragon shield",
-    "requirements": {
-      "quests": [
-        "Dragon Slayer I"
-      ]
-    }
-  },
   "8464": {
     "id": 8464,
     "name": "Rune heraldic helm",
@@ -8404,8 +8371,7 @@
     "id": 10372,
     "name": "Zamorak chaps",
     "requirements": {
-      "ranged": 70,
-      "defence": 40
+      "ranged": 70
     }
   },
   "10374": {
@@ -8436,8 +8402,7 @@
     "id": 10380,
     "name": "Guthix chaps",
     "requirements": {
-      "ranged": 70,
-      "defence": 40
+      "ranged": 70
     }
   },
   "10382": {
@@ -8468,8 +8433,7 @@
     "id": 10388,
     "name": "Saradomin chaps",
     "requirements": {
-      "ranged": 70,
-      "defence": 40
+      "ranged": 70
     }
   },
   "10390": {
@@ -9783,10 +9747,7 @@
     "id": 11840,
     "name": "Dragon boots",
     "requirements": {
-      "defence": 60,
-      "quests": [
-        "Death Plateau"
-      ]
+      "defence": 60
     }
   },
   "11864": {
@@ -9981,10 +9942,7 @@
     "name": "Leaf-bladed sword",
     "requirements": {
       "attack": 50,
-      "slayer": 50,
-      "quests": [
-        "Smoking Kills"
-      ]
+      "slayer": 55
     }
   },
   "11905": {
@@ -10624,8 +10582,7 @@
     "id": 12494,
     "name": "Ancient chaps",
     "requirements": {
-      "ranged": 70,
-      "defence": 40
+      "ranged": 70
     }
   },
   "12496": {
@@ -10656,8 +10613,7 @@
     "id": 12502,
     "name": "Bandos chaps",
     "requirements": {
-      "ranged": 70,
-      "defence": 40
+      "ranged": 70
     }
   },
   "12504": {
@@ -10688,8 +10644,7 @@
     "id": 12510,
     "name": "Armadyl chaps",
     "requirements": {
-      "ranged": 70,
-      "defence": 40
+      "ranged": 70
     }
   },
   "12512": {
@@ -11968,10 +11923,7 @@
     "id": 19722,
     "name": "Dragon defender (t)",
     "requirements": {
-      "defence": 60,
-      "quests": [
-        "Dragon Slayer II"
-      ]
+      "defence": 60
     }
   },
   "19921": {
@@ -12851,10 +12803,7 @@
     "name": "Leaf-bladed battleaxe",
     "requirements": {
       "attack": 65,
-      "slayer": 65,
-      "quests": [
-        "Smoking Kills"
-      ]
+      "slayer": 55
     }
   },
   "20730": {
@@ -13797,23 +13746,11 @@
       "defence": 30
     }
   },
-  "22231": {
-    "id": 22231,
-    "name": "Dragon boots ornament kit",
-    "requirements": {
-      "quests": [
-        "Death Plateau"
-      ]
-    }
-  },
   "22234": {
     "id": 22234,
     "name": "Dragon boots (g)",
     "requirements": {
-      "defence": 60,
-      "quests": [
-        "Death Plateau"
-      ]
+      "defence": 60
     }
   },
   "22236": {
@@ -16557,9 +16494,7 @@
     "id": 28055,
     "name": "Dragon boots (cr)",
     "requirements": {
-      "quests": [
-        "Death Plateau"
-      ]
+      "defence": 60
     }
   },
   "28067": {
@@ -16592,6 +16527,37 @@
       "quests": [
         "The Great Brain Robbery"
       ]
+    }
+  },
+  "29280": {
+    "id": 29280,
+    "name": "Mixed Hide Top",
+    "requirements": {
+      "ranged": 60,
+      "defence": 50
+    }
+  },
+  "29283": {
+    "id": 29283,
+    "name": "Mixed Hide Legs",
+    "requirements": {
+      "ranged": 60
+    }
+  },
+  "29286": {
+    "id": 29286,
+    "name": "Mixed Hide Boots",
+    "requirements": {
+      "ranged": 60,
+      "defence": 50
+    }
+  },
+  "29289": {
+    "id": 29289,
+    "name": "Mixed Hide Boots",
+    "requirements": {
+      "ranged": 60,
+      "defence": 50
     }
   },
   "29816": {
